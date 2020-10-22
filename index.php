@@ -8,6 +8,7 @@ $count = 0;
 
 
 
+
 class Product {
 	private $Products ;
 	private $Currency ;
@@ -21,10 +22,14 @@ class Product {
 		                   ['name' => 'Jacket', 'price' => 19.99],
 		                   ['name' => 'Shoes' , 'price' => 24.99]
 		                  ];
-	 	$this->Currency = ['USD' => '/$' , 'EGP' => 'e '];                   
+	 	$this->Currency = [
+	 		              ['currency_name' => 'USD' , 'shape' => '$'],
+	 		              ['currency_name' => 'EGP' , 'shape' => 'e£']
+	 		              ];
+
 
 	}
-	public function Compare(&$product_from_main) //This class For comparing The user entery with our Cart
+	public function Compare(&$product_from_main,&$Currency_from_main) //This class For comparing The user entery with our Cart
 	{
 		
 		
@@ -45,9 +50,48 @@ class Product {
 		$Tax_in_pounds = $Sub_Total * (14/100);
 
 
-		echo "Subtotal : $Sub_Total";
-		echo '<br/>';
-		echo "Taxes : $Tax_in_pounds";
+ 		//FOR CURRENCY
+		foreach ($Currency_from_main as $Curr ) 
+		{ 
+			if ($Curr == 'USD')
+			{
+				foreach ($this->Currency as $c) 
+				{
+					if($c['currency_name'] == 'USD')
+					{
+						
+		                echo 'Subtotal : ' . $c['shape'] . $Sub_Total;
+		                echo '<br/>';
+		                echo 'Taxes : ' . $c['shape'] . $Tax_in_pounds;
+					}
+				}
+			}
+			/////////
+			elseif ($Curr == "EGP")
+			{
+				foreach ($this->Currency as $c) 
+				{
+					if($c['currency_name'] == 'EGP')
+					{
+						$Sub_Total *= 15.75;
+						$Tax_in_pounds *= 15.75;
+
+						
+		                echo 'Subtotal : ' . $c['shape'] . floor($Sub_Total);
+		                echo '<br/>';
+		                echo 'Taxes : ' . $c['shape'] . floor($Tax_in_pounds);
+					}
+				}
+
+			}
+
+
+			
+		}
+
+
+	
+
 		
 	}
 	//End of First Function
@@ -109,32 +153,13 @@ class Product {
 ///////////////////////////////////////////
 
 	}
+	//End of Discounf of T-shirts
+//Start of Currency 
+
+
 
 
 }
-
-
-$array_of_products = ['T-shirt','T-shirt','T-shirt'];
-$array_of_currency = ['EGP' , 'USD'];
-$x = new Product($array_of_products,$array_of_currency);
-echo $x->Discount_of_Tshirts($array_of_products);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
