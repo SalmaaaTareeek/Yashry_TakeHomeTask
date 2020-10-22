@@ -4,6 +4,7 @@ $Sub_Total = 0;
 $Tax_in_pounds = 0;
 $Disscount_Shoes = 0;
 $Disscount_Tshirts = 0;
+$count = 0;
 
 
 
@@ -57,15 +58,6 @@ class Product {
 		{
 			if ($product == "Shoes")
 			{
-				// for($i =0 ; $i < count($Products) ; $i++)
-				// {
-				// 	if ($Products['names'] == 'Shoes')
-				// 	{
-				// 		global $Disscount_Shoes
-				// 		$Disscount_Shoes = $Products
-				// 	}
-
-				// }
 				foreach ($this->Products as $p) 
 				{
 					if($p['name'] == 'Shoes')
@@ -81,17 +73,71 @@ class Product {
 		
 	}
 	//End of Shoes Disccount 
+	//Start of T-shirt Discount
 
-	public function Discount_of_Tshirts (&$)
+	public function Discount_of_Tshirts (&$product_from_main)
+	{
+		////////////////////////////////
+		foreach ($product_from_main as $product) 
+		{
+			if ($product == "T-shirt")
+
+			{
+				global $count;
+				$count ++;
+				if ($count == 2)
+				{
+					foreach ($this->Products as $p) 
+				{
+					if($p['name'] == 'Jacket')
+					{
+						global $Disscount_Tshirts;
+						$Disscount_Tshirts = $Disscount_Tshirts + ($p['price']*(50/100));
+						echo $Disscount_Tshirts;
+						$count = 0;
+					}
+				}
+
+				}
+				
+			}
+
+		}
+		//End of T-shirt Discount
+
+
+///////////////////////////////////////////
+
+	}
 
 
 }
 
 
-$array_of_products = ['T-shirt','T-shirt','Shoes','Jacket'];
+$array_of_products = ['T-shirt','T-shirt','T-shirt'];
 $array_of_currency = ['EGP' , 'USD'];
 $x = new Product($array_of_products,$array_of_currency);
-echo $x->Discount_of_Shoes($array_of_products);
+echo $x->Discount_of_Tshirts($array_of_products);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ?>
