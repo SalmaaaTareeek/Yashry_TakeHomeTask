@@ -80,6 +80,9 @@ class Product {
 		}
 		
 	}
+	//End of Shoes Disccount 
+
+	public function Discount_of_Tshirts (&$)
 
 
 }
