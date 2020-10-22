@@ -3,6 +3,7 @@
 $Sub_Total = 0;
 
 
+
 class Product {
 	private $Products ;
 
@@ -26,14 +27,15 @@ class Product {
 			{
 				if ($product['name'] == $product_from_main[$i])
 				{
-					echo $product['price'];
-					echo '<br/>';
-				}
-				
+					global $Sub_Total;
+					$Sub_Total = $Sub_Total + $product['price'];	
+				}		
 
 			}
 	
 		}
+		echo $Sub_Total;
+		echo '<br/>';
 	}
 	//End of First Function
 	//Start of Counting
@@ -53,6 +55,7 @@ echo $x->Compare($array_of_products);
 
 $y = new Product($array_of_products);
 $y->Adding_From_Cart($array_of_products);
+
 
 
 
