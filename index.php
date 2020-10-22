@@ -77,9 +77,10 @@ class Product {
 						$Tax_in_pounds *= 15.75;
 
 						
-		                echo 'Subtotal : ' . $c['shape'] . floor($Sub_Total);
+		                echo 'Subtotal : '  . floor($Sub_Total) . $c['shape'];
 		                echo '<br/>';
-		                echo 'Taxes : ' . $c['shape'] . floor($Tax_in_pounds);
+		                echo 'Taxes : ' . floor($Tax_in_pounds) . $c['shape'] ;
+		                echo '<br/>';
 					}
 				}
 
@@ -88,6 +89,7 @@ class Product {
 
 			
 		}
+		//END OF CURRENCY
 
 
 	
@@ -96,7 +98,7 @@ class Product {
 	}
 	//End of First Function
 	//Start of Discount Functions
-	public function Discount_of_Shoes (&$product_from_main)
+	public function Discount_of_Shoes (&$product_from_main,&$Currency_from_main)
 	{
 		foreach ($product_from_main as $product) 
 		{
@@ -108,26 +110,72 @@ class Product {
 					{
 						global $Disscount_Shoes;
 						$Disscount_Shoes = $Disscount_Shoes + ($p['price']*(10/100));
-						echo $Disscount_Shoes;
+						//echo $Disscount_Shoes;
 					}
 				}
 			}
 
 		}
+				//FOR CURRENCY
+		foreach ($Currency_from_main as $Curr ) 
+		{ 
+			if ($Curr == 'USD')
+			{
+				foreach ($this->Currency as $c) 
+				{
+					if($c['currency_name'] == 'USD')
+					{
+					  echo '<br/>';
+					  echo 'Discounts:';
+					  echo '<br/>';
+					  echo str_repeat('&nbsp;', 13);
+					  echo '         10% off shoes:' . '-' .$c['shape'] . $Disscount_Shoes;
+		              echo '<br/>';
+					}
+				}
+			}
+			/////////
+			elseif ($Curr == "EGP")
+			{
+				foreach ($this->Currency as $c) 
+				{
+					if($c['currency_name'] == 'EGP')
+					{
+						$Disscount_Shoes *= 15.75;
+						echo '<br/>';
+					  	echo 'Discounts:';
+					  	echo '<br/>';
+					  	echo str_repeat('&nbsp;', 13);
+					  	echo '         10% off shoes:' . '-' .$c['shape'] . $Disscount_Shoes;
+		              	echo '<br/>';
+						
+
+						
+					}
+				}
+
+			}
+
+
+			
+		}
+		//END OF CURRENCY
 		
 	}
 	//End of Shoes Disccount 
 	//Start of T-shirt Discount
 
-	public function Discount_of_Tshirts (&$product_from_main)
+	public function Discount_of_Tshirts (&$product_from_main,&$Currency_from_main)
 	{
 		////////////////////////////////
+		global $count;
+		global $Disscount_Tshirts;
 		foreach ($product_from_main as $product) 
 		{
 			if ($product == "T-shirt")
 
 			{
-				global $count;
+				//global $count;
 				$count ++;
 				if ($count == 2)
 				{
@@ -135,9 +183,9 @@ class Product {
 				{
 					if($p['name'] == 'Jacket')
 					{
-						global $Disscount_Tshirts;
+						//global $Disscount_Tshirts;
 						$Disscount_Tshirts = $Disscount_Tshirts + ($p['price']*(50/100));
-						echo $Disscount_Tshirts;
+						//echo $Disscount_Tshirts;
 						$count = 0;
 					}
 				}
@@ -147,10 +195,52 @@ class Product {
 			}
 
 		}
-		//End of T-shirt Discount
+
+		foreach ($Currency_from_main as $Curr ) 
+		{ 
+			if ($Curr == 'USD')
+			{
+				foreach ($this->Currency as $c) 
+				{
+					if($c['currency_name'] == 'USD')
+					{
+					  // echo '<br/>';
+					  // echo 'Discounts:';
+					  //echo '<br/>';
+					  echo str_repeat('&nbsp;', 13);
+					  echo '         50% off jacket:' . '-' .$c['shape'] . $Disscount_Tshirts;
+		              echo '<br/>';
+					}
+				}
+			}
+			/////////
+			elseif ($Curr == "EGP")
+			{
+				foreach ($this->Currency as $c) 
+				{
+					if($c['currency_name'] == 'EGP')
+					{
+						$Disscount_Tshirts *= 15.75;
+						echo '<br/>';
+					  	echo 'Discounts:';
+					  	echo '<br/>';
+					  	echo str_repeat('&nbsp;', 13);
+					  	echo '         10% off shoes:' . '-' .$c['shape'] . $Disscount_Tshirts;
+		              	echo '<br/>';
+						
+
+						
+					}
+				}
+
+			}
 
 
-///////////////////////////////////////////
+			
+		}
+		//END OF CURRENCY
+		
+
 
 	}
 	//End of Discounf of T-shirts
@@ -158,11 +248,7 @@ class Product {
 
 
 
-
 }
-
-
-
 
 
 ?>
