@@ -5,6 +5,7 @@ $Tax_in_pounds = 0;
 $Disscount_Shoes = 0;
 $Disscount_Tshirts = 0;
 $count = 0;
+$total =0;
 
 
 
@@ -75,11 +76,13 @@ class Product {
 					{
 						$Sub_Total *= 15.75;
 						$Tax_in_pounds *= 15.75;
+						$Sub_Total = floor($Sub_Total);
+						$Tax_in_pounds = floor($Tax_in_pounds);
 
 						
-		                echo 'Subtotal : '  . floor($Sub_Total) . $c['shape'];
+		                echo 'Subtotal : '  . $Sub_Total . $c['shape'];
 		                echo '<br/>';
-		                echo 'Taxes : ' . floor($Tax_in_pounds) . $c['shape'] ;
+		                echo 'Taxes : ' . $Tax_in_pounds . $c['shape'] ;
 		                echo '<br/>';
 					}
 				}
@@ -87,9 +90,11 @@ class Product {
 			}
 
 
-			
+
+	
 		}
 		//END OF CURRENCY
+	
 
 
 	
@@ -100,6 +105,7 @@ class Product {
 	//Start of Discount Functions
 	public function Discount_of_Shoes (&$product_from_main,&$Currency_from_main)
 	{
+		global $Disscount_Shoes;
 		foreach ($product_from_main as $product) 
 		{
 			if ($product == "Shoes")
@@ -108,7 +114,7 @@ class Product {
 				{
 					if($p['name'] == 'Shoes')
 					{
-						global $Disscount_Shoes;
+						
 						$Disscount_Shoes = $Disscount_Shoes + ($p['price']*(10/100));
 						//echo $Disscount_Shoes;
 					}
@@ -221,9 +227,9 @@ class Product {
 					if($c['currency_name'] == 'EGP')
 					{
 						$Disscount_Tshirts *= 15.75;
-						echo '<br/>';
-					  	echo 'Discounts:';
-					  	echo '<br/>';
+						// echo '<br/>';
+					 //  	echo 'Discounts:';
+					 //  	echo '<br/>';
 					  	echo str_repeat('&nbsp;', 13);
 					  	echo '         10% off shoes:' . '-' .$c['shape'] . $Disscount_Tshirts;
 		              	echo '<br/>';
@@ -244,11 +250,65 @@ class Product {
 
 	}
 	//End of Discounf of T-shirts
-//Start of Currency 
+//Start of Total
+	public function Total(&$product_from_main,&$Currency_from_main)
+	{
+		global $Sub_Total;
+		global $Tax_in_pounds;
+        global $Disscount_Shoes ;
+        global $Disscount_Tshirts ;
+        global $total;
+        $total = $Sub_Total + $Tax_in_pounds - $Disscount_Shoes - $Disscount_Tshirts;
+        //FOR CURRENCY
+		foreach ($Currency_from_main as $Curr ) 
+		{ 
+			if ($Curr == 'USD')
+			{
+				foreach ($this->Currency as $c) 
+				{
+					if($c['currency_name'] == 'USD')
+					{
+						echo 'Total : ' . $c['shape'] . $total;
+						
+		               
+					}
+				}
+			}
+			/////////
+			elseif ($Curr == "EGP")
+			{
+				foreach ($this->Currency as $c) 
+				{
+					if($c['currency_name'] == 'EGP')
+					{
+						
+						$total = floor($total);
+		                echo 'Total : ' . $c['shape'] . $total ;
+		                
+		               
+					}
+				}
+
+			}
+
+
+
+	
+		}
+		//END OF CURRENCY
+
+
+
+	}
+//End of Total 
+
 
 
 
 }
+
+
+
 
 
 ?>
