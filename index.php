@@ -1,13 +1,15 @@
 <?php
 //Importants Vars
 $Sub_Total = 0;
+$Tax_in_pounds = 0;
 
 
 
 class Product {
 	private $Products ;
+	private $Currency ;
 
-	public function __construct($Products)
+	public function __construct($Products , $Currency)
 	{
 		$this->Products = [
 			               ['name'=>'T-shirt' , 'price' => 10.99] ,
@@ -15,14 +17,15 @@ class Product {
 		                   ['name' => 'Jacket', 'price' => 19.99],
 		                   ['name' => 'Shoes' , 'price' => 24.99]
 		                  ];
-		// $this->Currency = ['USD' => '/$' , 'EGP' => 'e '];                   
+	 	$this->Currency = ['USD' => '/$' , 'EGP' => 'e '];                   
 
 	}
 	public function Compare(&$product_from_main) //This class For comparing The user entery with our Cart
 	{
 		
 		
-		foreach ($this->Products as &$product) {
+		foreach ($this->Products as &$product) 
+		{
 			for ($i = 0 ; $i<count($product_from_main) ; $i++)
 			{
 				if ($product['name'] == $product_from_main[$i])
@@ -34,13 +37,19 @@ class Product {
 			}
 	
 		}
-		echo $Sub_Total;
+		global $Tax_in_pounds ;
+		$Tax_in_pounds = $Sub_Total * (14/100);
+
+
+		echo "Subtotal : $Sub_Total";
 		echo '<br/>';
+		echo "Taxes : $Tax_in_pounds";
 	}
 	//End of First Function
 	//Start of Counting
-	public function Adding_From_Cart(&$product_from_main)
+	public function Taxes ()
 	{
+
 		
 		
 	}
@@ -49,12 +58,12 @@ class Product {
 }
 
 
-$array_of_products = ['T-shirt','T-shirt','Shoes'];
-$x = new Product($array_of_products);
+$array_of_products = ['T-shirt','T-shirt','Shoes','Jacket'];
+$array_of_currency = ['EGP' , 'USD'];
+$x = new Product($array_of_products,$array_of_currency);
 echo $x->Compare($array_of_products);
 
-$y = new Product($array_of_products);
-$y->Adding_From_Cart($array_of_products);
+
 
 
 
