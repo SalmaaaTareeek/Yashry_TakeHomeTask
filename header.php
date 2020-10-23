@@ -1,3 +1,5 @@
+<?php
+?>
 <head>
 	<title>YASHRY/EDFA3LY</title>
 	<!-- Compiled and minified CSS -->
