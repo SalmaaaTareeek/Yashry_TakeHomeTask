@@ -83,7 +83,7 @@ class Product {
 		                echo 'Subtotal : '  . $Sub_Total . $c['shape'];
 		                echo '<br/>';
 		                echo 'Taxes : ' . $Tax_in_pounds . $c['shape'] ;
-		                echo '<br/>';
+		                
 					}
 				}
 
@@ -135,12 +135,12 @@ class Product {
 				{
 					if($c['currency_name'] == 'USD')
 					{
-					  echo '<br/>';
-					  echo 'Discounts:';
-					  echo '<br/>';
-					  echo str_repeat('&nbsp;', 13);
-					  echo '         10% off shoes:' . '-' .$c['shape'] . $Disscount_Shoes;
-		              echo '<br/>';
+					  // echo '<br/>';
+					  // echo 'Discounts:';
+					  // echo '<br/>';
+					  // echo str_repeat('&nbsp;', 13);
+					  // echo '         10% off shoes:' . '-' .$c['shape'] . $Disscount_Shoes;
+		     //          echo '<br/>';
 					}
 				}
 			}
@@ -152,12 +152,12 @@ class Product {
 					if($c['currency_name'] == 'EGP')
 					{
 						$Disscount_Shoes *= 15.78;
-						echo '<br/>';
-					  	echo 'Discounts:';
-					  	echo '<br/>';
-					  	echo str_repeat('&nbsp;', 13);
-					  	echo '         10% off shoes:' . '-' .$c['shape'] . $Disscount_Shoes;
-		              	echo '<br/>';
+						// echo '<br/>';
+					 //  	echo 'Discounts:';
+					 //  	echo '<br/>';
+					 //  	echo str_repeat('&nbsp;', 13);
+					 //  	echo '         10% off shoes:' . '-' .$c['shape'] . $Disscount_Shoes;
+		    //           	echo '<br/>';
 						
 
 						
@@ -220,11 +220,11 @@ class Product {
 					if($c['currency_name'] == 'USD')
 					{
 					  //echo '<br/>';
-					  echo 'Discounts:';
-					  echo '<br/>';
-					  echo str_repeat('&nbsp;', 13);
-					  echo '         50% off jacket:' . '-'  . $Disscount_Tshirts .$c['shape'];
-		              echo '<br/>';
+					  // echo 'Discounts:';
+					  // echo '<br/>';
+					  // echo str_repeat('&nbsp;', 13);
+					  // echo '         50% off jacket:' . '-'  . $Disscount_Tshirts .$c['shape'];
+		     //          echo '<br/>';
 					}
 				}
 			}
@@ -237,11 +237,11 @@ class Product {
 					{
 						$Disscount_Tshirts *= 15.76;
 						//echo '<br/>';
-					  	echo 'Discounts:';
-					  	echo '<br/>';
-					  	echo str_repeat('&nbsp;', 13);
-					  	echo '         50% off shoes:' . '-'  . $Disscount_Tshirts .$c['shape'];
-		              	echo '<br/>';
+					  	// echo 'Discounts:';
+					  	// echo '<br/>';
+					  	// echo str_repeat('&nbsp;', 13);
+					  	// echo '         50% off shoes:' . '-'  . $Disscount_Tshirts .$c['shape'];
+		      //         	echo '<br/>';
 						
 
 						
@@ -277,6 +277,42 @@ class Product {
 				{
 					if($c['currency_name'] == 'USD')
 					{
+						if($Disscount_Tshirts != 0 && $Disscount_Shoes != 0)
+						{
+							echo '<br/>';
+							echo 'Discounts:';
+					  		echo '<br/>';
+					  		echo str_repeat('&nbsp;', 13);
+					  		echo '         10% off shoes:' . '-' .$c['shape'] . $Disscount_Shoes;
+					  		echo '<br/>';
+					  		echo str_repeat('&nbsp;', 13);
+					  		echo '         50% off shoes:' . '-' .$c['shape'] . $Disscount_Tshirts ;
+		              		echo '<br/>';
+
+						}
+						elseif ($Disscount_Tshirts != 0 && $Disscount_Shoes == 0) 
+						{
+							echo '<br/>';
+							echo 'Discounts:';
+					  		echo '<br/>';
+					  		echo str_repeat('&nbsp;', 13);
+					  		echo '         50% off shoes:' . '-' .$c['shape'] . $Disscount_Tshirts ;
+		              		echo '<br/>';
+
+							
+						}
+						elseif ($Disscount_Tshirts == 0 && $Disscount_Shoes != 0) 
+						{
+							echo '<br/>';
+							echo 'Discounts:';
+					  		echo '<br/>';
+					  		echo str_repeat('&nbsp;', 13);
+					  		echo '         10% off shoes:' . '-' .$c['shape'] . $Disscount_Shoes;
+		              		echo '<br/>';
+
+							
+						}
+
 						echo 'Total : ' . $c['shape'] . $total;
 						
 		               
@@ -290,6 +326,44 @@ class Product {
 				{
 					if($c['currency_name'] == 'EGP')
 					{
+						$Disscount_Tshirts = floor($Disscount_Tshirts);
+						$Disscount_Shoes = floor($Disscount_Shoes);
+						if($Disscount_Tshirts != 0 && $Disscount_Shoes != 0)
+						{
+							echo '<br/>';
+							echo 'Discounts:';
+					  		echo '<br/>';
+					  		echo str_repeat('&nbsp;', 13);
+					  		echo '         10% off shoes:' . '-' . $Disscount_Shoes .$c['shape'] ;
+					  		echo '<br/>';
+					  		echo str_repeat('&nbsp;', 13);
+					  		echo '         50% off shoes:' . '-'  . $Disscount_Tshirts .$c['shape'];
+		              		echo '<br/>';
+
+						}
+						elseif ($Disscount_Tshirts != 0 && $Disscount_Shoes == 0) 
+						{
+							echo '<br/>';
+							echo 'Discounts:';
+					  		echo '<br/>';
+					  		echo str_repeat('&nbsp;', 13);
+					  		echo '         50% off shoes:' . '-'  . $Disscount_Tshirts .$c['shape'];
+		              		echo '<br/>';
+
+							
+						}
+						elseif ($Disscount_Tshirts == 0 && $Disscount_Shoes != 0) 
+						{
+
+							echo '<br/>';
+							echo 'Discounts:';
+					  		echo '<br/>';
+					  		echo str_repeat('&nbsp;', 13);
+					  		echo '         10% off shoes:' . '-'  . $Disscount_Shoes .$c['shape'];
+		              		echo '<br/>';
+
+							
+						}
 						
 						$total = floor($total);
 		                echo 'Total : '  . $total . $c['shape'];
