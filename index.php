@@ -32,6 +32,7 @@ class Product {
 	}
 	public function Compare(&$product_from_main,&$Currency_from_main) //This class For comparing The user entery with our Cart
 	{
+		global $Sub_Total;
 		
 		
 		foreach ($this->Products as &$product) 
@@ -40,8 +41,9 @@ class Product {
 			{
 				if ($product['name'] == $product_from_main[$i])
 				{
-					global $Sub_Total;
-					$Sub_Total = $Sub_Total + $product['price'];	
+					
+					$Sub_Total = $Sub_Total + $product['price'];
+
 				}		
 
 			}
@@ -64,6 +66,7 @@ class Product {
 		                echo 'Subtotal : ' . $c['shape'] . $Sub_Total;
 		                echo '<br/>';
 		                echo 'Taxes : ' . $c['shape'] . $Tax_in_pounds;
+		                echo '<br/>';
 					}
 				}
 			}
@@ -83,6 +86,7 @@ class Product {
 		                echo 'Subtotal : '  . $Sub_Total . $c['shape'];
 		                echo '<br/>';
 		                echo 'Taxes : ' . $Tax_in_pounds . $c['shape'] ;
+		                echo '<br/>';
 		                
 					}
 				}
@@ -279,7 +283,7 @@ class Product {
 					{
 						if($Disscount_Tshirts != 0 && $Disscount_Shoes != 0)
 						{
-							echo '<br/>';
+							//echo '<br/>';
 							echo 'Discounts:';
 					  		echo '<br/>';
 					  		echo str_repeat('&nbsp;', 13);
@@ -292,7 +296,7 @@ class Product {
 						}
 						elseif ($Disscount_Tshirts != 0 && $Disscount_Shoes == 0) 
 						{
-							echo '<br/>';
+							//echo '<br/>';
 							echo 'Discounts:';
 					  		echo '<br/>';
 					  		echo str_repeat('&nbsp;', 13);
@@ -303,7 +307,7 @@ class Product {
 						}
 						elseif ($Disscount_Tshirts == 0 && $Disscount_Shoes != 0) 
 						{
-							echo '<br/>';
+							//echo '<br/>';
 							echo 'Discounts:';
 					  		echo '<br/>';
 					  		echo str_repeat('&nbsp;', 13);
