@@ -74,8 +74,8 @@ class Product {
 				{
 					if($c['currency_name'] == 'EGP')
 					{
-						$Sub_Total *= 15.75;
-						$Tax_in_pounds *= 15.75;
+						$Sub_Total *= 15.76;
+						$Tax_in_pounds *= 15.76;
 						$Sub_Total = floor($Sub_Total);
 						$Tax_in_pounds = floor($Tax_in_pounds);
 
@@ -125,6 +125,10 @@ class Product {
 				//FOR CURRENCY
 		foreach ($Currency_from_main as $Curr ) 
 		{ 
+			if ($Disscount_Shoes == 0)
+			{
+				break;
+			}
 			if ($Curr == 'USD')
 			{
 				foreach ($this->Currency as $c) 
@@ -147,7 +151,7 @@ class Product {
 				{
 					if($c['currency_name'] == 'EGP')
 					{
-						$Disscount_Shoes *= 15.75;
+						$Disscount_Shoes *= 15.78;
 						echo '<br/>';
 					  	echo 'Discounts:';
 					  	echo '<br/>';
@@ -203,18 +207,23 @@ class Product {
 		}
 
 		foreach ($Currency_from_main as $Curr ) 
+
 		{ 
+			if ($Disscount_Tshirts == 0)
+			{
+				break;
+			}
 			if ($Curr == 'USD')
 			{
 				foreach ($this->Currency as $c) 
 				{
 					if($c['currency_name'] == 'USD')
 					{
-					  // echo '<br/>';
-					  // echo 'Discounts:';
 					  //echo '<br/>';
+					  echo 'Discounts:';
+					  echo '<br/>';
 					  echo str_repeat('&nbsp;', 13);
-					  echo '         50% off jacket:' . '-' .$c['shape'] . $Disscount_Tshirts;
+					  echo '         50% off jacket:' . '-'  . $Disscount_Tshirts .$c['shape'];
 		              echo '<br/>';
 					}
 				}
@@ -226,12 +235,12 @@ class Product {
 				{
 					if($c['currency_name'] == 'EGP')
 					{
-						$Disscount_Tshirts *= 15.75;
-						// echo '<br/>';
-					 //  	echo 'Discounts:';
-					 //  	echo '<br/>';
+						$Disscount_Tshirts *= 15.76;
+						//echo '<br/>';
+					  	echo 'Discounts:';
+					  	echo '<br/>';
 					  	echo str_repeat('&nbsp;', 13);
-					  	echo '         10% off shoes:' . '-' .$c['shape'] . $Disscount_Tshirts;
+					  	echo '         50% off shoes:' . '-'  . $Disscount_Tshirts .$c['shape'];
 		              	echo '<br/>';
 						
 
@@ -283,7 +292,7 @@ class Product {
 					{
 						
 						$total = floor($total);
-		                echo 'Total : ' . $c['shape'] . $total ;
+		                echo 'Total : '  . $total . $c['shape'];
 		                
 		               
 					}
