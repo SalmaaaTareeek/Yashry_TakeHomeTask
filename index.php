@@ -14,10 +14,11 @@ class Product {
 	private $Products ;                   //an array will carry our Database for the products and prices (multi dimensional array)
 	private $Currency ;                   //an array will carry the Currency wether EGP/USD
 
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Estimate our small database in the constructor 
 	public function __construct($Products , $Currency)
 	{
-		// This is Like Our small Database
+		// This is Like Our small Database for Products and Currency
 		$this->Products = [
 			               ['name'=>'T-shirt' , 'price' => 10.99] ,
 		                   ['name' => 'Pants' , 'price' => 14.99],
@@ -29,6 +30,8 @@ class Product {
 	 		              ['currency_name' => 'EGP' , 'shape' => 'e£']
 	 		              ];
 	}
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// This Function inputs the array of products as arguement entered by user and the currency and Outputs the subtotal and Taxes
 	public function Compare(&$product_from_main,&$Currency_from_main) 
 	{
@@ -90,11 +93,11 @@ class Product {
 			}
 
 		}
-		//END OF CURRENCY ESTIMATION FOR SUBTOTAL AND 
-
-		
+		//END OF CURRENCY ESTIMATION FOR SUBTOTAL AND TAXES	
 	}
 	//End of First Function
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//Start of Discount Functions and It estimate if the user wants to buy shoes the Discount will be procceed
 	public function Discount_of_Shoes (&$product_from_main,&$Currency_from_main)
 	{
@@ -140,11 +143,12 @@ class Product {
 		
 	}
 	//End of Shoes Disccount 
-	//Start of T-shirt Discount
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//Start of T-shirt Discount and state if the user enters two tshirt the jacket will be discounted to half
 	public function Discount_of_Tshirts (&$product_from_main,&$Currency_from_main)
 	{
-		////////////////////////////////
 		global $count;
 		global $Disscount_Tshirts;
 		foreach ($product_from_main as $product) 
@@ -152,7 +156,6 @@ class Product {
 			if ($product == "T-shirt")
 
 			{
-				//global $count;
 				$count ++;
 				if ($count == 2)
 				{
@@ -160,10 +163,8 @@ class Product {
 				{
 					if($p['name'] == 'Jacket')
 					{
-						//global $Disscount_Tshirts;
 						$Disscount_Tshirts = $Disscount_Tshirts + ($p['price']*(50/100));
-						//echo $Disscount_Tshirts;
-						$count = 0;
+						$count = 0;         //Restarting the count after checking there is two tshirts for not over lapping
 					}
 				}
 
@@ -180,43 +181,17 @@ class Product {
 			{
 				break;
 			}
-			if ($Curr == 'USD')
-			{
-				foreach ($this->Currency as $c) 
-				{
-					if($c['currency_name'] == 'USD')
-					{
-					  //echo '<br/>';
-					  // echo 'Discounts:';
-					  // echo '<br/>';
-					  // echo str_repeat('&nbsp;', 13);
-					  // echo '         50% off jacket:' . '-'  . $Disscount_Tshirts .$c['shape'];
-		     //          echo '<br/>';
-					}
-				}
-			}
-			/////////
-			elseif ($Curr == "EGP")
+			if ($Curr == "EGP")
 			{
 				foreach ($this->Currency as $c) 
 				{
 					if($c['currency_name'] == 'EGP')
 					{
 						$Disscount_Tshirts *= 15.76;
-						//echo '<br/>';
-					  	// echo 'Discounts:';
-					  	// echo '<br/>';
-					  	// echo str_repeat('&nbsp;', 13);
-					  	// echo '         50% off shoes:' . '-'  . $Disscount_Tshirts .$c['shape'];
-		      //         	echo '<br/>';
-						
-
 						
 					}
 				}
-
 			}
-
 
 			
 		}
@@ -226,7 +201,9 @@ class Product {
 
 	}
 	//End of Discounf of T-shirts
-//Start of Total
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Start of Total function the will calculate the total to the user
 	public function Total(&$product_from_main,&$Currency_from_main)
 	{
 		global $Sub_Total;
@@ -246,7 +223,6 @@ class Product {
 					{
 						if($Disscount_Tshirts != 0 && $Disscount_Shoes != 0)
 						{
-							//echo '<br/>';
 							echo 'Discounts:';
 					  		echo '<br/>';
 					  		echo str_repeat('&nbsp;', 13);
@@ -259,34 +235,28 @@ class Product {
 						}
 						elseif ($Disscount_Tshirts != 0 && $Disscount_Shoes == 0) 
 						{
-							//echo '<br/>';
 							echo 'Discounts:';
 					  		echo '<br/>';
 					  		echo str_repeat('&nbsp;', 13);
 					  		echo '         50% off shoes:' . '-' .$c['shape'] . $Disscount_Tshirts ;
 		              		echo '<br/>';
-
 							
 						}
 						elseif ($Disscount_Tshirts == 0 && $Disscount_Shoes != 0) 
 						{
-							//echo '<br/>';
 							echo 'Discounts:';
 					  		echo '<br/>';
 					  		echo str_repeat('&nbsp;', 13);
 					  		echo '         10% off shoes:' . '-' .$c['shape'] . $Disscount_Shoes;
 		              		echo '<br/>';
-
-							
+	
 						}
 
-						echo 'Total : ' . $c['shape'] . $total;
-						
+						echo 'Total : ' . $c['shape'] . $total;	
 		               
 					}
 				}
 			}
-			/////////
 			elseif ($Curr == "EGP")
 			{
 				foreach ($this->Currency as $c) 
@@ -316,8 +286,7 @@ class Product {
 					  		echo str_repeat('&nbsp;', 13);
 					  		echo '         50% off shoes:' . '-'  . $Disscount_Tshirts .$c['shape'];
 		              		echo '<br/>';
-
-							
+	
 						}
 						elseif ($Disscount_Tshirts == 0 && $Disscount_Shoes != 0) 
 						{
@@ -341,24 +310,13 @@ class Product {
 
 			}
 
-
-
-	
 		}
 		//END OF CURRENCY
 
-
-
 	}
-//End of Total 
-
-
-
+//End of Total
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
 
 }
-
-
-
-
 
 ?>
