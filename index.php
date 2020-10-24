@@ -115,51 +115,25 @@ class Product {
 			}
 
 		}
-				//FOR CURRENCY
+				//FOR CURRENCY THAT ESTIMATE IF THE CUURENCY IS EGP AND ADDING THE DIIFFERNECE BETWEEN USD AND EGP
 		foreach ($Currency_from_main as $Curr ) 
 		{ 
 			if ($Disscount_Shoes == 0)
 			{
 				break;
 			}
-			if ($Curr == 'USD')
-			{
-				foreach ($this->Currency as $c) 
-				{
-					if($c['currency_name'] == 'USD')
-					{
-					  // echo '<br/>';
-					  // echo 'Discounts:';
-					  // echo '<br/>';
-					  // echo str_repeat('&nbsp;', 13);
-					  // echo '         10% off shoes:' . '-' .$c['shape'] . $Disscount_Shoes;
-		     //          echo '<br/>';
-					}
-				}
-			}
-			/////////
-			elseif ($Curr == "EGP")
+
+			if ($Curr == "EGP")
 			{
 				foreach ($this->Currency as $c) 
 				{
 					if($c['currency_name'] == 'EGP')
 					{
-						$Disscount_Shoes *= 15.78;
-						// echo '<br/>';
-					 //  	echo 'Discounts:';
-					 //  	echo '<br/>';
-					 //  	echo str_repeat('&nbsp;', 13);
-					 //  	echo '         10% off shoes:' . '-' .$c['shape'] . $Disscount_Shoes;
-		    //           	echo '<br/>';
-						
-
-						
+						$Disscount_Shoes *= 15.78;	
 					}
 				}
 
 			}
-
-
 			
 		}
 		//END OF CURRENCY
