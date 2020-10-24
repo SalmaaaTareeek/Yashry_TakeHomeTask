@@ -1,18 +1,19 @@
 <?php
 //Importants Vars
-$Sub_Total = 0;
-$Tax_in_pounds = 0;
-$Disscount_Shoes = 0;
-$Disscount_Tshirts = 0;
-$count = 0;
-$total =0;
+$Sub_Total = 0;                           //Global Variable for calculating Sub Total and passes the variable through pages
+$Tax_in_pounds = 0;                       //Global Variable for calculating Taxes 14% and passes the variable through pages
+$Disscount_Shoes = 0;                     //Global Variable for calculating Disscount of shoes and passes the variable through pages
+$Disscount_Tshirts = 0;                   //Global Variable for calculating Discount of two Tshirts and passes the variable through pages
+$count = 0;                               //Estimate if the Count of the Tshirts is two the price of jacket will be 50%
+$total =0;                                //Estimate the total = subtotal + taxes - Discounts 
 
 
 
 
 class Product {
-	private $Products ;
-	private $Currency ;
+	private $Products ;                   //an array will carry our Database for the products and prices (multi dimensional array)
+	private $Currency ;                   //an array will carry the Currency wether EGP/USD
+
 
 	public function __construct($Products , $Currency)
 	{
@@ -27,14 +28,11 @@ class Product {
 	 		              ['currency_name' => 'USD' , 'shape' => '$'],
 	 		              ['currency_name' => 'EGP' , 'shape' => 'e£']
 	 		              ];
-
-
 	}
-	public function Compare(&$product_from_main,&$Currency_from_main) //This class For comparing The user entery with our Cart
+	// This Function inputs the array of products as arguement entered by user and the currency and Outputs the subtotal and Taxes
+	public function Compare(&$product_from_main,&$Currency_from_main) 
 	{
 		global $Sub_Total;
-		
-		
 		foreach ($this->Products as &$product) 
 		{
 			for ($i = 0 ; $i<count($product_from_main) ; $i++)
@@ -51,9 +49,7 @@ class Product {
 		}
 		global $Tax_in_pounds ;
 		$Tax_in_pounds = $Sub_Total * (14/100);
-
-
- 		//FOR CURRENCY
+ 		//FOR CURRENCY ESTIMATION AND CALCULATION FOR THE SUBTOTAL AND TAXES
 		foreach ($Currency_from_main as $Curr ) 
 		{ 
 			if ($Curr == 'USD')
@@ -93,20 +89,13 @@ class Product {
 
 			}
 
-
-
-	
 		}
-		//END OF CURRENCY
-	
-
-
-	
+		//END OF CURRENCY ESTIMATION FOR SUBTOTAL AND 
 
 		
 	}
 	//End of First Function
-	//Start of Discount Functions
+	//Start of Discount Functions and It estimate if the user wants to buy shoes the Discount will be procceed
 	public function Discount_of_Shoes (&$product_from_main,&$Currency_from_main)
 	{
 		global $Disscount_Shoes;
