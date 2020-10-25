@@ -36,17 +36,26 @@ Our Products and Currency can be extended easily from the code itself and be mul
 
 
 
-
-
 4. Features 
 * The developer can extend the database of the products within the code.
 * The developer can extend the database of the currency also within the code.
 * There are a detailed Functions in the code with well written comments than we can modify it to any currency and change the calculations between different Currencies easily.
 * A user interface (HTML FORM) to make the user capability to enter his own products and currency easily.
-
 5. Future Plan.
 * As a future plan and due to lack of time I will do a simple REST API for user interfacing.
 * Also as a future plan and as GITHUB can’t hosting extensions like php and only hosting static extensions , I will use AJAX to host PHP successfully. 
+
+6. Code Design and Architecture
+
+I write a class which handles all the calculations in the Bill.
+The Constructor of the class has two arguments:
+* An array of products
+* An array contain the currency 
+And also there are functions to handle the subtotal, taxes, discounts of shoes and t-shirts and calculating the total. 
+
+
+
+
 
 
 
