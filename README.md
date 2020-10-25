@@ -50,7 +50,8 @@ Our Products and Currency can be extended easily from the code itself and be mul
 I write a class which handles all the calculations in the Bill.
 The Constructor of the class has two arguments:
 * An array of products
-* An array contain the currency 
+* An array contain the currency. 
+
 And also there are functions to handle the subtotal, taxes, discounts of shoes and t-shirts and calculating the total. 
 
 
